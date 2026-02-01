@@ -1,4 +1,4 @@
-# 🧮 Professional Calculator App
+# 🧮Calculator App
 
 A clean, modern, and responsive calculator built using **HTML, Tailwind CSS, and JavaScript**.  
 This project focuses on a **professional UI**, smooth interactions, and mobile-friendly design.
@@ -42,5 +42,4 @@ This project focuses on a **professional UI**, smooth interactions, and mobile-f
    git clone https://github.com/yourusername/professional-calculator.git
 
 
-> *(Add a screenshot here)*  
-Example:
+
