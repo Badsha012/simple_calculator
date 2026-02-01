@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Professional Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-200 to-slate-400">
+
+  <div class="bg-white w-80 p-5 rounded-2xl shadow-2xl">
+    
+    <!-- Display -->
+    <div
+      id="display"
+      class="bg-slate-900 text-white text-3xl font-mono text-right px-4 py-5 rounded-xl mb-4 overflow-hidden">
+      0
+    </div>
+
+    <!-- Buttons -->
+    <div class="grid grid-cols-4 gap-3">
+
+      <button class="btn bg-red-500 text-white">C</button>
+      <button class="btn bg-gray-300">⌫</button>
+      <button class="btn bg-gray-300">%</button>
+      <button class="btn bg-indigo-500 text-white">÷</button>
+
+      <button class="btn bg-gray-100">7</button>
+      <button class="btn bg-gray-100">8</button>
+      <button class="btn bg-gray-100">9</button>
+      <button class="btn bg-indigo-500 text-white">×</button>
+
+      <button class="btn bg-gray-100">4</button>
+      <button class="btn bg-gray-100">5</button>
+      <button class="btn bg-gray-100">6</button>
+      <button class="btn bg-indigo-500 text-white">−</button>
+
+      <button class="btn bg-gray-100">1</button>
+      <button class="btn bg-gray-100">2</button>
+      <button class="btn bg-gray-100">3</button>
+      <button class="btn bg-indigo-500 text-white">+</button>
+
+      <button class="btn bg-gray-100 col-span-2">0</button>
+      <button class="btn bg-gray-100">.</button>
+      <button class="btn bg-emerald-500 text-white">=</button>
+
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById("display");
+    const buttons = document.querySelectorAll("button");
+
+    let current = "";
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const value = btn.innerText;
+
+        if (value === "C") {
+          current = "";
+          display.innerText = "0";
+        }
+        else if (value === "⌫") {
+          current = current.slice(0, -1);
+          display.innerText = current || "0";
+        }
+        else if (value === "=") {
+          try {
+            current = current
+              .replace(/×/g, "*")
+              .replace(/÷/g, "/")
+              .replace(/−/g, "-");
+            current = eval(current).toString();
+            display.innerText = current;
+          } catch {
+            display.innerText = "Error";
+            current = "";
+          }
+        }
+        else {
+          current += value;
+          display.innerText = current;
+        }
+      });
+    });
+  </script>
+
+  <style>
+    .btn {
+      height: 56px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+    .btn:hover {
+      filter: brightness(0.95);
+    }
+    .btn:active {
+      transform: scale(0.95);
+    }
+  </style>
+
+</body>
+</html>
